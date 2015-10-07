@@ -1,5 +1,22 @@
 # Searchkick
 
+:warning: This fork is different from the original repository :warning:
+
+It has the support for nested object filters, which is not supported by the gem by now.
+
+Relevant code (lib/searchkick/query.rb):
+```
+# nested filter
+if nested_filter_value = options[:nested]
+ filters << {
+   nested: {
+     path: nested_filter_value[:path],
+     filter: { and: where_filters(nested_filter_value[:where]) }
+   }
+ }
+end
+```
+
 :rocket: Intelligent search made easy
 
 Searchkick learns what **your users** are looking for.  As more people search, it gets smarter and the results get better.  It’s friendly for developers - and magical for your users.
